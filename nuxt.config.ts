@@ -17,7 +17,8 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxt/devtools',
     '@nuxt/image-edge',
-    '@productdevbook/chatwoot'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode'
   ],
 
   experimental: {
@@ -41,17 +42,22 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
 
-  chatwoot: {
-    init: {
-      websiteToken: process.env.CHATWOOT_TOKEN,
-      baseUrl: process.env.CHATWOOT_SITE_URL
-    },
-    settings: {
-      locale: 'en',
-      position: 'left'
-    },
-    // If this is loaded you can make it true, https://github.com/nuxt-modules/partytown
-    partytown: false
-  }
+  colorMode: {
+    classSuffix: ''
+  },
 
+  app: {
+    head: {
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+      charset: 'utf-8',
+      script: [
+        {
+          src: '/scripts/chatwoot.js',
+          type: 'text/partytown',
+          async: true,
+          defer: true
+        }
+      ]
+    }
+  }
 })
